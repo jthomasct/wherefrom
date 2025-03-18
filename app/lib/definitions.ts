@@ -1,31 +1,41 @@
 import z from "zod";
 
-const tagInfoSchema = z.object ({
+export const ImageAssetSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  data: z.string().url(),
+  contentType: z.string(),
+});
+export type ImageAsset = z.infer<typeof ImageAssetSchema>;
+
+export const TagInfoSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
 });
-export type tagInfo = z.infer<typeof tagInfoSchema>;
+export type tagInfo = z.infer<typeof TagInfoSchema>;
 
-const WorldSchema = z.object({
+export const WorldSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
   techLevel: z.bigint(),
   attributeTags: z.array(z.string().uuid()),
   story: z.string(),
+  image: z.string().url().optional(),
 });
 export type World = z.infer<typeof WorldSchema>;
 
-const TownSchema = z.object({
+export const TownSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
   population: z.bigint(),
   worldId: z.string().uuid(),
   attributeTags: z.array(z.string().uuid()),
   story: z.string(),
+  image: z.string().url().optional(),
 });
 export type Town = z.infer<typeof TownSchema>;
 
-const CharacterSchema = z.object({
+export const CharacterSchema = z.object({
   id: z.string().uuid(),
   created: z.date(),
   name: z.string(),
@@ -35,10 +45,11 @@ const CharacterSchema = z.object({
   currentTownId: z.string().uuid(),
   attributeTags: z.array(z.string().uuid()),
   story: z.string(),
+  image: z.string().url().optional(),
 });
 export type Character = z.infer<typeof CharacterSchema>;
 
-const InteractableSchema = z.object({
+export const InteractableSchema = z.object({
   id: z.string().uuid(),
   created: z.date(),
   name: z.string(),
@@ -48,10 +59,11 @@ const InteractableSchema = z.object({
   currentTownId: z.string().uuid(),
   attributeTags: z.array(z.string().uuid()),
   story: z.string(),
+  image: z.string().url().optional(),
 });
 export type Interactable = z.infer<typeof InteractableSchema>;
 
-const OccurenceSchema = z.object({
+export const OccurenceSchema = z.object({
   id: z.string().uuid(),
   created: z.date(),
   name: z.string(),
@@ -60,8 +72,9 @@ const OccurenceSchema = z.object({
   recurring: z.string(),
   characters: z.array(z.string().uuid()),
   towns: z.array(z.string().uuid()),
-  objects: z.array(z.string().uuid()),
+  interactables: z.array(z.string().uuid()),
   attributeTags: z.array(z.string().uuid()),
   story: z.string(),
+  image: z.string().url().optional(),
 });
-export type occurence = z.infer<typeof OccurenceSchema>
+export type occurence = z.infer<typeof OccurenceSchema>;
