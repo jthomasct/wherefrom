@@ -1,4 +1,13 @@
-import { Character, World, Town, Interactable, occurence, tagInfo } from "./definitions";
+import { Character, World, Town, Interactable, occurence, tagInfo, ImageAsset } from "./definitions";
+import griselImage from "@/public/characters/grisel.png";
+import bitImage from "@/public/characters/bit.png";
+
+export const griselImageEntry: ImageAsset = {
+  id: "00005222-E64B-4715-A3A2-83DFBC4B34CX",
+  name: "grisel",
+  data: griselImage.src,
+  contentType: "image/png",
+}
 
 export const watery: tagInfo = {
   id: "00005222-E64B-4715-A3A2-83DFBC4B34CB",
@@ -98,6 +107,7 @@ export const grisel: Character = {
   currentTownId: amphithon.id,
   attributeTags: [],
   story: "",
+  image: griselImage.src,
 };
 
 export const griselBit: Character = {
@@ -110,18 +120,18 @@ export const griselBit: Character = {
   currentTownId: amphithon.id,
   attributeTags: [],
   story: "",
+  image: bitImage.src,
 };
 
 export const hoverBoard: Interactable = {
   id: "972D7BC1-FF0B-4829-84A7-01B419C6825A",
   created: new Date(),
   name: "hoverBoard",
-  attributeTags: ["tool","movement"],
   homeWorldId: aquarius.id,
   homeTownId: amphithon.id,
   currentWorldId: aquarius.id,
   currentTownId: amphithon.id,
-  attributeTags: [],
+  attributeTags: ["tool","movement"],
   story: "",
 }
 
@@ -129,12 +139,11 @@ export const robotBody: Interactable = {
   id: "972D7BC1-FF0B-4829-84A7-01B419C6825A",
   created: new Date(),
   name: "hoverBoard",
-  attributeTags: ["tool","movement"],
   homeWorldId: taurus.id,
   homeTownId: prongpeak.id,
   currentWorldId: aquarius.id,
   currentTownId: amphithon.id,
-  attributeTags: [],
+  attributeTags: ["tool","movement"],
   story: "",
 }
 
@@ -146,6 +155,7 @@ export const newGame: occurence = {
   stops: new Date(),
   recurring: "false",
   characters: [grisel.id, griselBit.id],
+  interactables: [],
   towns: [amphithon.id],
   attributeTags: [],
   story: "Grisel begins her quest at this location",
@@ -159,7 +169,7 @@ export const stealHoverBoard: occurence = {
   stops: new Date(),
   recurring: "false",
   characters: [grisel.id, griselBit.id],
-  objects: [hoverBoard.id],
+  interactables: [hoverBoard.id],
   towns: [amphithon.id],
   attributeTags: [],
   story: "Grisel discovers a hoverboard while roaming Aquarius. After careful consideration, she decides to put her thief skills to use",
@@ -173,7 +183,7 @@ export const escapeCapricorn: occurence = {
   stops: new Date(),
   recurring: "false",
   characters: [grisel.id, griselBit.id],
-  objects: [robotBody.id],
+  interactables: [robotBody.id],
   towns: [prongpeak.id],
   attributeTags: [],
   story: "",
