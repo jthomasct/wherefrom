@@ -188,3 +188,5 @@ export const escapeCapricorn: occurence = {
   attributeTags: [],
   story: "",
 }
+
+export const characterSet = [grisel, griselBit];
